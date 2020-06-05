@@ -7,26 +7,26 @@ const parse = (args: Array<string>): parsedArgs => {
   if (args.length < 4) throw new Error('Not enough arguments');
 
   // Remove first arguments
-  args.splice(0, 2)
+  args.splice(0, 2);
   // Save target to a const
-  const target = Number(args.splice(0, 1))
-  const numberedArray = args.map(Number)
+  const target = Number(args.splice(0, 1));
+  const numberedArray = args.map(Number);
 
   numberedArray.forEach(element => {
     if (isNaN(element)) {
-      throw new Error('Provided values were not numbers!')
+      throw new Error('Provided values were not numbers!');
     }
-  })
+  });
 
   if (isNaN(target)) {
-      throw new Error('Provided values were not numbers!')
+      throw new Error('Provided values were not numbers!');
   }
   
   return {
     target: target,
     exerciseData: numberedArray
-  }
-}
+  };
+};
 
 interface exerciseResults {
   periodLength: number;
@@ -66,13 +66,14 @@ const calculateExercises = (exerciseDays: Array<number>, targetGoal: number): ex
     ratingDescription,
     target,
     average
-  }
-}
+  };
+};
 
 
 try {
-  const { target, exerciseData } = parse(process.argv)
-  console.log(calculateExercises(exerciseData, target))
+  const { target, exerciseData } = parse(process.argv);
+  console.log(calculateExercises(exerciseData, target));
 } catch (e) {
-  console.log('Error, ', e.message)
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+  console.log('Error, ', e.message);
 }
